@@ -2,6 +2,7 @@ module Data.Adts
   ( divide
   , f
   , f'
+  , fumber
   )
   where
 
@@ -17,7 +18,6 @@ divide :: ∀ a. Eq a => EuclideanRing a => a -> a -> Maybe a
 divide x y 
   | y == zero = Nothing
   | otherwise = Just $ x / y
-
 f :: Number -> Maybe Number
 f x = case divide 83.0 x of
   Nothing -> Nothing
@@ -32,3 +32,8 @@ f' :: Number -> Either String Number
 f' x = case divide' 83.0 x of 
   Left reason -> Left reason
   Right result -> Right $ result * 10.0
+
+fumber :: Number -> Number
+fumber x = 10.0 * case divide' 83.0 x of
+  Left _ -> 0.0
+  Right result -> result
