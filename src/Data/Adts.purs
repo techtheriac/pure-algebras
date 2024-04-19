@@ -1,8 +1,11 @@
 module Data.Adts
-  ( divide
+  ( Color(..)
+  , Genre(..)
+  , divide
   , f
   , f'
   , fumber
+  , getColorFromGenre
   )
   where
 
@@ -37,3 +40,12 @@ fumber :: Number -> Number
 fumber x = 10.0 * case divide' 83.0 x of
   Left _ -> 0.0
   Right result -> result
+
+newtype Color = Color String
+derive newtype instance showColor :: Show Color
+data Genre = Musing | Poetry | Engineering 
+getColorFromGenre :: Genre -> Color
+getColorFromGenre x = case x of
+  Musing -> Color "#FF9200"
+  Poetry -> Color "#87A19E"
+  Engineering -> Color "#87A190"
