@@ -2,8 +2,9 @@ module Data.Picture where
 
 import Prelude
 
-import Control.Apply (lift2)
+import Control.Apply (lift2, lift3)
 import Data.Maybe (Maybe(..))
+
 gcd ∷ Int → Int → Int
 gcd n 0 = n
 gcd 0 m = m 
@@ -181,5 +182,11 @@ address street city state = { street, city, state}
 add' :: ∀ a. Semiring a => a -> a -> a
 add' x y = x + y
 
+add3 :: ∀ a. Semiring a => a -> a -> a -> a
+add3 x y z = x + y + z
+
 addMaybe ∷ ∀ a . Semiring a => Maybe a -> Maybe a -> Maybe a  
 addMaybe = lift2 add' 
+
+addMaybe' ∷ ∀ a . Semiring a => Maybe a -> Maybe a -> Maybe a -> Maybe a  
+addMaybe' = lift3 add3
